@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: "Public Sans", system-ui, sans-serif;
+  }
+}
+
+/* Custom utility classes */
+@layer components {
+  .gradient-purple {
+    @apply bg-gradient-to-r from-gradient-purple to-primary-purple;
+  }
+  
+  .gradient-green {
+    @apply bg-gradient-to-r from-gradient-green to-primary-green;
+  }
+} 
