@@ -10,7 +10,7 @@ import { useSearch } from '../hooks/useSearch';
 export const Home: FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const { products, loading, error } = useProducts();
-  const { searchTerm, filteredProducts, handleSearch } = useSearch(products);
+  const { searchTerm, handleSearch } = useSearch(products);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -29,13 +29,6 @@ export const Home: FC = () => {
         </div>
       ) : (
         <ProductsSection 
-          products={filteredProducts.map(p => ({
-            id: Number(p.id),
-            title: p.name,
-            price: p.price,
-            category: p.category_id,
-            imageUrl: `/placeholder-${p.category_id}.jpg`
-          }))} 
           isLoaded={isLoaded && !loading} 
         />
       )}

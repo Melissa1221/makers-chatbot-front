@@ -9,7 +9,7 @@ export const searchService = {
     return products.filter(product => {
       return (
         product.name.toLowerCase().includes(term) ||
-        product.category_id.toLowerCase().includes(term) ||
+        product.category_id.toString().includes(term) ||
         product.description.toLowerCase().includes(term) ||
         product.labels.some(label => label.toLowerCase().includes(term))
       );

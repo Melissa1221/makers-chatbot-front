@@ -13,12 +13,13 @@ interface ProductSpecs {
 }
 
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   description: string;
   stock: number;
-  category_id: string;
+  category_id: number;
+  image_url: string;
   specs: ProductSpecs;
   labels: string[];
   created_at: string;
@@ -36,8 +37,8 @@ export const productsService = {
     return response;
   },
 
-  async getProductsByCategory(categoryId: string): Promise<Product[]> {
-    const response = await api.get<Product[]>(`/categories/${categoryId}/products`);
+  async getProductsByCategory(categoryId: number): Promise<Product[]> {
+    const response = await api.get<Product[]>(`/products/category/${categoryId}`);
     return response;
   }
 }; 

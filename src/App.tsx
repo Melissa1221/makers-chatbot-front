@@ -1,20 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Home } from './pages/Home';
-import { Chat } from './pages/Chat';
-import { CategoryPage } from './pages/CategoryPage';
-import { Dashboard } from './pages/Dashboard';
+import { FC } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { CategoryProvider } from './contexts/CategoryContext';
+import { RecommendationProvider } from './contexts/RecommendationContext';
+import { useProducts } from './hooks/useProducts';
+import { AppRoutes } from './routes/AppRoutes';
 
-function App() {
+export const App: FC = () => {
+  const { products } = useProducts();
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path="/category/:categoryId" element={<CategoryPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Routes>
-    </Router>
+    <BrowserRouter>
+      <CategoryProvider>
+        <RecommendationProvider products={products}>
+          <AppRoutes />
+        </RecommendationProvider>
+      </CategoryProvider>
+    </BrowserRouter>
   );
-}
-
-export default App;
+};
