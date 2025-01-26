@@ -34,12 +34,12 @@ export const Navbar: FC = () => {
   return (
     <nav className="bg-primary-dark text-white p-4 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <Link to="/" className="text-2xl font-bold">
+        <Link to="/home" className="text-2xl font-bold">
           Makers Tech
         </Link>
         
         <div className="flex gap-6">
-          <Link to="/" className="hover:text-primary-green transition-colors">
+          <Link to="/home" className="hover:text-primary-green transition-colors">
             Home
           </Link>
           

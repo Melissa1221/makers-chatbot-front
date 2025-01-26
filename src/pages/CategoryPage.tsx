@@ -47,7 +47,6 @@ export const CategoryPage: FC = () => {
         <p className="text-primary-dark/70 mb-8">{category.description}</p>
 
         <ProductsSection 
-          products={products} 
           isLoaded={!loading} 
         />
       </div>

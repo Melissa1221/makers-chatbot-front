@@ -10,7 +10,7 @@ import { useSearch } from '../hooks/useSearch';
 export const Home: FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const { products, loading, error } = useProducts();
-  const { searchTerm, filteredProducts, handleSearch } = useSearch(products);
+  const { searchTerm, handleSearch } = useSearch(products);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -29,7 +29,6 @@ export const Home: FC = () => {
         </div>
       ) : (
         <ProductsSection 
-          products={filteredProducts} 
           isLoaded={isLoaded && !loading} 
         />
       )}

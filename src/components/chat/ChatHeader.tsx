@@ -6,7 +6,7 @@ export const ChatHeader: FC = () => {
     <div className="bg-white/80 backdrop-blur-sm rounded-t-2xl p-4 border-b border-primary-purple/20">
       <div className="flex items-center justify-between">
         <Link 
-          to="/"
+          to="/home"
           className="flex items-center gap-2 text-primary-dark hover:text-primary-purple transition-colors"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
