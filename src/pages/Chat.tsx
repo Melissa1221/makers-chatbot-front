@@ -3,6 +3,7 @@ import { MessageBubble } from '../components/chat/MessageBubble';
 import { TypingIndicator } from '../components/chat/TypingIndicator';
 import { ChatHeader } from '../components/chat/ChatHeader';
 import { ChatInput } from '../components/chat/ChatInput';
+import { useChat } from '../hooks/useChat';
 
 interface Message {
   id: string;
@@ -23,13 +24,14 @@ export const Chat: FC = () => {
   const [inputMessage, setInputMessage] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { sendMessage, loading } = useChat();
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const handleSendMessage = async () => {
-    if (!inputMessage.trim()) return;
+    if (!inputMessage.trim() || loading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
@@ -42,16 +44,19 @@ export const Chat: FC = () => {
     setInputMessage('');
     setIsTyping(true);
 
-    setTimeout(() => {
+    const response = await sendMessage(inputMessage);
+    
+    if (response) {
       const botMessage: Message = {
         id: (Date.now() + 1).toString(),
-        text: "¡Gracias por tu mensaje! Estoy aquí para ayudarte con información sobre nuestros productos y servicios.",
+        text: response,
         isBot: true,
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botMessage]);
-      setIsTyping(false);
-    }, 1500);
+    }
+    
+    setIsTyping(false);
   };
 
   return (

@@ -3,11 +3,13 @@ import { SearchBar } from '../common/SearchBar';
 
 interface HeroSectionProps {
   isLoaded: boolean;
+  searchTerm: string;
+  onSearch: (term: string) => void;
 }
 
-export const HeroSection: FC<HeroSectionProps> = ({ isLoaded }) => {
+export const HeroSection: FC<HeroSectionProps> = ({ isLoaded, searchTerm, onSearch }) => {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-gradient-purple via-white to-gradient-green">
+    <div className="relative overflow-hidden bg-gradient-to-b from-gradient-purple via-white to-gradient-green h-[70vh]">
       <div className="absolute inset-0 bg-gradient-morphing from-gradient-purple via-primary-blue to-gradient-green animate-gradient-xy opacity-10" />
       
       {/* Floating shapes background */}
@@ -17,9 +19,9 @@ export const HeroSection: FC<HeroSectionProps> = ({ isLoaded }) => {
         <div className="absolute bottom-20 left-1/2 w-80 h-80 bg-primary-blue/10 rounded-full animate-float delay-2000 blur-3xl" />
       </div>
 
-      <div className="relative z-10 pt-32 pb-20 px-8">
-        <div className="max-w-7xl mx-auto space-y-12">
-          <div className={`space-y-8 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <div className="relative z-10 flex flex-col justify-center h-full pt-20 pb-16 px-8">
+        <div className="max-w-7xl mx-auto space-y-10">
+          <div className={`space-y-6 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-5xl md:text-7xl font-bold text-primary-dark text-center">
               Welcome to{' '}
               <span className="bg-gradient-to-r from-primary-purple via-primary-blue to-primary-green bg-shine animate-shine bg-clip-text text-transparent">
@@ -32,7 +34,7 @@ export const HeroSection: FC<HeroSectionProps> = ({ isLoaded }) => {
           </div>
 
           <div className={`max-w-2xl mx-auto transition-all duration-1000 delay-300 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <SearchBar />
+            <SearchBar value={searchTerm} onSearch={onSearch} />
           </div>
         </div>
       </div>
