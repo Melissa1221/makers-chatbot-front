@@ -46,6 +46,8 @@ A modern e-commerce platform for Makers Tech, featuring a real-time ChatBot assi
 
 ### API Endpoints
 
+Base URL: `http://localhost:8000`
+
 ```typescript
 // Products
 GET /products                    // Get all products
