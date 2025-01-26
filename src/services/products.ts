@@ -18,32 +18,26 @@ export interface Product {
   price: number;
   description: string;
   stock: number;
-  category: string;
-  labels: string[];
+  category_id: string;
   specs: ProductSpecs;
-}
-
-interface ProductsResponse {
-  products: Product[];
-}
-
-interface SingleProductResponse {
-  product: Product;
+  labels: string[];
+  created_at: string;
+  updated_at: string;
 }
 
 export const productsService = {
   async getAllProducts(): Promise<Product[]> {
-    const response = await api.get<ProductsResponse>('/products');
-    return response.products;
+    const response = await api.get<Product[]>('/products');
+    return response;
   },
 
   async getProduct(id: string): Promise<Product> {
-    const response = await api.get<SingleProductResponse>(`/products/${id}`);
-    return response.product;
+    const response = await api.get<Product>(`/products/${id}`);
+    return response;
   },
 
   async getProductsByCategory(categoryId: string): Promise<Product[]> {
-    const response = await api.get<ProductsResponse>(`/categories/${categoryId}/products`);
-    return response.products;
+    const response = await api.get<Product[]>(`/categories/${categoryId}/products`);
+    return response;
   }
 }; 

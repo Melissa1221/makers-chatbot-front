@@ -1,3 +1,4 @@
+import { API_BASE_URL } from './api';
 
 interface ChatResponse {
   response: string;
@@ -5,7 +6,7 @@ interface ChatResponse {
 
 export const chatService = {
   async sendMessage(message: string): Promise<string> {
-    const response = await fetch('http://localhost:8003/chat', {
+    const response = await fetch(`${API_BASE_URL}/chat`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
