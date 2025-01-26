@@ -1,13 +1,6 @@
 import { FC } from 'react';
 import { ProductCard } from '../products/ProductCard';
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  category: string;
-  imageUrl: string;
-}
+import { Product } from '../../services/products';
 
 interface ProductsSectionProps {
   products: Product[];
@@ -29,7 +22,12 @@ export const ProductsSection: FC<ProductsSectionProps> = ({ products, isLoaded }
               className={`opacity-0 ${isLoaded ? 'opacity-100' : ''}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <ProductCard {...product} />
+              <ProductCard 
+                id={product.id}
+                title={product.name}
+                price={product.price}
+                image_url={product.image_url}
+              />
             </div>
           ))}
         </div>

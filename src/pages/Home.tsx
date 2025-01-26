@@ -29,13 +29,7 @@ export const Home: FC = () => {
         </div>
       ) : (
         <ProductsSection 
-          products={filteredProducts.map(p => ({
-            id: Number(p.id),
-            title: p.name,
-            price: p.price,
-            category: p.category_id,
-            imageUrl: `/placeholder-${p.category_id}.jpg`
-          }))} 
+          products={filteredProducts} 
           isLoaded={isLoaded && !loading} 
         />
       )}

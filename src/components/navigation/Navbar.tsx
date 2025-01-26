@@ -1,11 +1,12 @@
 import { FC, useState, useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCategories } from '../../hooks/useCategories';
 
 export const Navbar: FC = () => {
   const { categories } = useCategories();
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<number>();
+  const navigate = useNavigate();
 
   const handleMouseEnter = useCallback(() => {
     if (timeoutRef.current) {
@@ -24,6 +25,11 @@ export const Navbar: FC = () => {
       }, 150);
     }
   }, []);
+
+  const handleCategoryClick = useCallback((categoryId: number) => {
+    navigate(`/category/${categoryId}`);
+    setIsOpen(false);
+  }, [navigate]);
 
   return (
     <nav className="bg-primary-dark text-white p-4 sticky top-0 z-50">
@@ -64,13 +70,13 @@ export const Navbar: FC = () => {
               }`}
             >
               {categories.map(category => (
-                <Link
+                <button
                   key={category.id}
-                  to={`/category/${category.id}`}
-                  className="block px-4 py-2 hover:bg-gradient-purple/10 transition-colors font-medium"
+                  onClick={() => handleCategoryClick(category.id)}
+                  className="w-full text-left px-4 py-2 hover:bg-gradient-purple/10 transition-colors font-medium"
                 >
                   {category.name}
-                </Link>
+                </button>
               ))}
             </div>
           </div>

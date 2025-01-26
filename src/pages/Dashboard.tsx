@@ -4,6 +4,8 @@ import { StockMetrics } from '../components/admin/StockMetrics';
 import { CategoryDistribution } from '../components/admin/CategoryDistribution';
 import { PriceRangeChart } from '../components/admin/PriceRangeChart'
 import { RecentProducts } from '../components/admin/RecentProducts';
+import { InventoryBarChart } from '../components/admin/InventoryBarChart';
+import { LowStockTable } from '../components/admin/LowStockTable';
 
 export const Dashboard: FC = () => {
   return (
@@ -20,6 +22,12 @@ export const Dashboard: FC = () => {
           
           {/* Category Distribution */}
           <CategoryDistribution />
+          
+          {/* Inventory Bar Chart */}
+          <InventoryBarChart />
+          
+          {/* Low Stock Table */}
+          <LowStockTable />
           
           {/* Price Range Distribution */}
           <PriceRangeChart />

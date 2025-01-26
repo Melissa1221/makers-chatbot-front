@@ -1,9 +1,10 @@
 import { api } from './api';
 
 export interface Category {
-  id: string;
+  id: number;
   name: string;
   description: string;
+  created_at: string;
 }
 
 export const categoriesService = {
